@@ -13,5 +13,5 @@ jobs:
         env:
           TOKEN: ${{ secrets.TOKEN }}
         with:
-          url: 'https://serverless-cron.vercel.app/api/weather?token=$TOKEN'
+          url: https://serverless-cron.vercel.app/api/weather?token=$TOKEN
 
