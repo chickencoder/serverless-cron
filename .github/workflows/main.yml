@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: fjogeleit/http-request-action@master
         env:
-          TOKEN: ${{ secrets.token }}
+          TOKEN: ${{ secrets.TOKEN }}
         with:
           url: 'https://serverless-cron.vercel.app/api/weather?token=$TOKEN'
 
