@@ -2,7 +2,13 @@ require('dotenv').config()
 const nodemailer = require('nodemailer')
 const fetch = require('node-fetch')
 
-const { USER: user, PASS: pass, PORT: port, FROM: from, TO: to } = process.env
+const {
+  USER: user,
+  PASS: pass,
+  FROM: from,
+  TO: to,
+  SECRET_TOKEN: secret,
+} = process.env
 
 const transporter = nodemailer.createTransport({
   service: 'sendgrid',
@@ -13,6 +19,14 @@ const transporter = nodemailer.createTransport({
 })
 
 module.exports = async (req, res) => {
+  const { token } = req.query
+
+  if (!token || token !== secret) {
+    return res.status(403).json({
+      message: 'Please provide the correct security token',
+    })
+  }
+
   const weather = await fetch('https://wttr.in/London?format=3').then((body) =>
     body.text()
   )
