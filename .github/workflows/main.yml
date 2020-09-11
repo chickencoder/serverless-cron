@@ -5,10 +5,12 @@ on:
     - cron: '0 8 * * *'
 
 jobs:
-    report
-      - name: trigger function
-          uses: fjogeleit/http-request-action@master
-          env:
-            - TOKEN: ${{ secrets.token }}
-          with:
-            url: 'https://serverless-cron.vercel.app/api/weather?token=$TOKEN'
+  request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fjogeleit/http-request-action@master
+        env:
+          TOKEN: ${{ secrets.token }}
+        with:
+          url: 'https://serverless-cron.vercel.app/api/weather?token=$TOKEN'
+
