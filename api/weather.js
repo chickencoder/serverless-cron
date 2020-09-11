@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
   if (!token || token !== secret) {
     return res.status(403).json({
-      message: 'Please provide the correct security token',
+      error: 'Please provide the correct security token',
     })
   }
 
