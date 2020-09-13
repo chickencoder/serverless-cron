@@ -9,7 +9,8 @@ jobs:
   request:
     runs-on: ubuntu-latest
     steps:
-      - uses: fjogeleit/http-request-action@master
+      - uses: satak/webrequest-action@master
         with:
+          method: GET
           url: https://serverless-cron.vercel.app/api/weather?token=${{ secrets.TOKEN }}
 
