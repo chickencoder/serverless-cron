@@ -21,9 +21,15 @@ const transporter = nodemailer.createTransport({
 module.exports = async (req, res) => {
   const { token } = req.query
 
-  if (!token || token !== secret) {
+  if (!token) {
+    return res.status(400).json({
+      error: 'Authentication token missing',
+    })
+  }
+
+  if (!token !== secret) {
     return res.status(403).json({
-      error: 'Please provide the correct security token',
+      error: 'Incorrect security token',
     })
   }
 
