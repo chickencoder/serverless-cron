@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: fjogeleit/http-request-action@master
-        env:
-          TOKEN: ${{ secrets.TOKEN }}
         with:
           url: https://serverless-cron.vercel.app/api/weather?token=${{ secrets.TOKEN }}
 
